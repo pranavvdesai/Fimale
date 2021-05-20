@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-language" content="en-us" />
+    <title>Best SIP Calculator | Mutualfund SIP Calculator</title>
+    <meta name="description"
+        content="Best SIP Calculator - Monthly and Quarterly SIP (Systematic Investment Plan) investment calculator with graphs, which will help you to calculate the future value of your SIP on expected returns on investment.You do not need to be wealthy to invest in SIP, But you will be wealthy if you invest in SIP">
+    <meta name="keywords"
+        content="sipcalcu,sip cal,best sip calculator,sip Calculator, mutual fund sip Calculator,calculate sip,sip calculator with graph, systematic investment planner, systematic investment plan, sip investment calculator,sip calcu,sip plan,what is sip" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="xQ24WYxlX7qdZnct0CjpN0C7qT05v7jH5qlHj5P0Lok" />
+    <meta name="msvalidate.01" content="A521023B6A3F165E77396517F88E5433" />
+    <link rel="icon" type="image/png" href="img/sip/icon_32.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="js/sipcalculate.js"></script>
+    <script src="js/Chart.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123723825-1"></script>
+    <style>
+        .input-div {
+            margin-top: 3%;
+        }
+
+        .panel-heading {
+            padding: 3%;
+            color: white;
+        }
+
+        .panel-body {
+            padding: 3%;
+        }
+
+        .pad3 {
+            padding: 3%;
+        }
+
+        .bg-color {
+            background: #3763eb;
+            color: white;
+        }
+
+        .pull-right {
+            float: right !important;
+        }
+
+        .marg3 {
+            margin: 3%;
+        }
+
+        .marg-top3 {
+            margin-top: 3%;
+        }
+
+        .marg-top1 {
+            margin-top: 1%
+        }
+
+        .vertical-center .row {
+            display: flex;
+            align-items: center;
+        }
+
+        .text15 {
+            font-size: 30px;
+        }
+
+        .text-justify {
+            text-align: justify;
+        }
+
+        .fontType {
+            font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+        }
+
+        .none {
+            display: none;
+        }
+
+        .marginleft0 {
+            margin-left: 0px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .text15 {
+                font-size: 12px;
+            }
+
+            .hide-mob-div {
+                display: none
+            }
+
+            .errorMsg {
+                font-size: 13px;
+            }
+
+            .canvas-mobile {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        h1 {
+            color: #043a42;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-color navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link fontType">Sip Calculator</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col marg-top3 text-center">
+                <h1 class="text15 fontType">SIP Calulcator (Mutual Fund SIP Calculator)</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 input-div">
+                <div class="panel panel-default border">
+                    <div class="panel-heading bg-color fontType">Calculate</div>
+                    <div class="panel-body ">
+                        <div class="form-group row">
+                            <label for="sipAmount" class="col-md-4 col-form-label fontType"><strong>SIP
+                                    Amount</strong></label>
+                            <div class="col-md-8">
+                                <input type="number" min="500" pattern="[0-9]" max="99000" class="form-control "
+                                    id="sipAmount" placeholder="1000">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="duration" class="col-md-4 col-form-label fontType"><strong>Duration
+                                    (Yrs.)</strong></label>
+                            <div class="col-md-8">
+                                <input type="number" min="1" max="30" pattern="[0-9]" class="form-control" id="duration"
+                                    placeholder="10">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="return" class="col-md-4 col-form-label fontType"><strong>Returns
+                                    (%)</strong></label>
+                            <div class="col-md-8">
+                                <input type="number" min="1" max="30" class="form-control" id="return" placeholder="7">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label class="fontType"><strong>Inv Frequency</strong></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="fontType"><input type="radio" value="month" name="ptype"
+                                        checked>&nbsp;&nbsp;Monthly</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="fontType"><input type="radio" value="quat"
+                                        name="ptype">&nbsp;&nbsp;Quarterly</label>
+                            </div>
+                        </div>
+                        <div class="form-group row pad3">
+                            <button type="button" id="calculate" class="btn btn-success col fontType">Calculate</button>
+                        </div>
+                        <div class="col-md-12 form-group row alert alert-danger marginleft0 none" id="errorDiv">
+                            <span id="errorMsg" class="errorMsg"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default border">
+
+                </div>
+            </div>
+            <div class="col-md-6 input-div">
+                <div class="panel panel-default border">
+                    <div class="panel-heading bg-color fontType" id="summary">Summary</div>
+                    <div class="panel-body ">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr class="fontType">
+                                    <td>Future Amount of SIP</td>
+                                    <td><span id="totalAmount">-</span></td>
+                                </tr>
+                                <tr class="fontType">
+                                    <td>Your Investment</td>
+                                    <td><span id="invAmount">-</span></td>
+                                </tr>
+                                <tr class="fontType">
+                                    <td>Your Earnings</td>
+                                    <td><span id="gainAmount">-</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="vertical-center pad3">
+                            <div class="col">
+                                <canvas id="myChart" class="canvas-mobile"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" id="what-is-sip-div">
+                <div class="panel-heading bg-color fontType">What is SIP ?</div>
+                <div class="panel-body ">
+                    <p class="text-justify fontType">
+                        In SIPs, a fixed amount of money is debited by the investors in bank accounts periodically and
+                        invested in a specified mutual fund. The investor is allocated a number of units according to
+                        the current Net asset value of mutual fund. Every time a sum is invested, more units are added
+                        to the investors account.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 none" id="barChartDiv">
+                <div class="panel panel-default border">
+                    <div class="panel-heading bg-color fontType" id="summary">Yearwise Future SIP Amount</div>
+                    <div class="panel-body ">
+                        <canvas id="barChart" class="canvas-mobile"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    $(document).ready(function () {
+        //on button click
+        $('#calculate').click(function () {
+            if (validateInput()) {
+                calculateSIP();
+                drawBarChart();
+            }
+        });
+        //on enter key press
+        $(document).keypress(function (event) {
+            if (event.which == 13) {
+                if (validateInput()) {
+                    calculateSIP();
+                    drawBarChart();
+                }
+            }
+        });
+    });
+
+    drawChart(1, 1);
+    //google analytics
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-123723825-1');    
+</script>
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "WebSite",
+      "name": "sipcalcu",
+      "alternateName": "sipcalculator",
+      "url": "www.sipcalcu.com"
+    }
+</script>
